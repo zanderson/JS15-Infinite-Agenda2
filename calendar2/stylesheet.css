@@ -1,0 +1,6 @@
+.day{
+    min-height: 75px;
+    border: 1px solid gray;
+    border-bottom: none;
+    width: 550px;
+}

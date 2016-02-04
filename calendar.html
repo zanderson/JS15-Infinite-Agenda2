@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="agendaapp">
+<head>
+    <title>My Calendar APP</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body ng-controller="appcontroller">
+<div class="container">
+	<div id="container">
+  		<div class="row">
+  			<div class="left">
+  				<h3>DATE</h3>
+  		
+  		</div>
+  			<div class="right">
+    			<h3>EVENT</h3>
+    			<p>Have a wonderful day!</p>
+  			</div>
+		</div>
+</div>
+  <div class="row2" ng-repeat="day in agendaDays">
+  			<div class="left" ng-click="setEditDay(day)">
+  			<p ng-bind="day.date | date:'MM/dd/yyyy'"></p>
+  			</div>
+  			<div class="right">
+    			<ul>
+          <li ng-repeat="item in day.items"><input type="text">{{item}}</li>
+          </ul>
+          <div ng-show="day == $parent.editDay">
+          <input type="text" ng-model="$parent.newItem" ng-keyup="submitit($event)">
+
+           <button type="submit" ng-click="addItem()">Add Task</button>
+          </div>
+  			</div>
+	</div>
+</div>
+</div>
+
+
+<!-- <div class="container">
+<button class="giant" ng-click="click(true)">Click Here!</button>
+
+<div class="border" ng-show="showPopup">
+<p>Hello. This is a message.</p>
+<button ng-click="click(false)">Close</button>
+</div> -->
+
+
+
+</body>
+</html>

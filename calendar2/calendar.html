@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="agendaapp">
+<head>
+    <title>My Calendar APP</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body ng-controller="appcontroller">
+<h1>Infinite Agenda</h1>
+<div class="day" ng-click="showForm($index, day)" ng-repeat="day in days">{{day.toDateString()}}
+
+  <form ng-show="day.currentlyAddingTask" ng-submit="submitTask(day)">
+    <input style="padding:5px;" ng-model="day.inputNewName">
+    <input style="padding:5px;" ng-model="day.inputNewDescription">
+    <input type="submit" style="display: none">
+    </form>
+
+  <div ng-repeat="task in day.tasks" ng-click="stopProp($event)">
+    <div ng-show="!task.editing" ng-click="toggleEditing(task)">
+      <h3>{{task.name}}</h3>
+      <h3>{{task.description}}</h3>
+    </div>
+      <form ng-show="task.editing" ng-submit="toggleEditing(task)">
+        <input ng-model="task.name">
+        <input ng-model="task.description">
+        <input type="submit" style="display: none;">
+      </form>
+  </div>
+
+</div>
+</body>
+</html>
